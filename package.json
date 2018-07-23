@@ -1,0 +1,24 @@
+{
+  "name": "dialogflow-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register tests/**/*.test.ts --timeout 10000 --reporter mochawesome"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/mocha": "^5.2.5",
+    "axios": "^0.18.0",
+    "chai": "^4.1.2",
+    "fs-extra": "^7.0.0",
+    "mocha": "^5.2.0",
+    "mochawesome": "^3.0.2",
+    "nightmare": "^3.0.1",
+    "nodemon": "^1.18.3",
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2"
+  }
+}
