@@ -31,7 +31,6 @@ export async function detectIntent(input: string, project: string, token: string
 export async function getIntents(project: string, token: string): Promise < any > {
     const url = `https://dialogflow.googleapis.com/v2/projects/${project}/agent/intents?intentView=INTENT_VIEW_FULL`;
     const options = {
-        //baseURL: "https://dialogflow.googleapis.com/v2/projects",
         headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json; charset=utf-8"
@@ -40,7 +39,17 @@ export async function getIntents(project: string, token: string): Promise < any 
     const response = await Axios.get(url, options);
     return response.data;
 }
-
+export async function getEntities(project: string, token: string): Promise < any > {
+    const url = `https://dialogflow.googleapis.com/v2/projects/${project}/agent/entityTypes`;
+    const options = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json; charset=utf-8"
+        }
+    }
+    const response = await Axios.get(url, options);
+    return response.data;
+}
 
 export function getAccessToken(): string {
     execSync("gcloud auth print-access-token> token.txt")

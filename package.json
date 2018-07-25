@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register tests/**/*.test.ts --timeout 10000 --reporter mochawesome"
+    "test": "mocha -r ts-node/register tests/**/*.test.ts --timeout 10000 --reporter mochawesome",
+    "test:common": "mocha -r ts-node/register tests/**/common.test.ts --timeout 10000 --reporter mochawesome"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "@types/mocha": "^5.2.5",
     "axios": "^0.18.0",
     "chai": "^4.1.2",
+    "dialogflow": "^0.6.0",
     "fs-extra": "^7.0.0",
     "mocha": "^5.2.0",
     "mochawesome": "^3.0.2",
