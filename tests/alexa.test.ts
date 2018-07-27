@@ -5,13 +5,9 @@ import * as colors from "colors";
 import * as fs from "fs-extra";
 import * as path from "path";
 import { detectIntent, getIntents } from "../src";
-import { getAccessToken  } from '../src/index';
 import { config } from './config';
 
-let allIntents : {intents?: any[]} = {};
 let failedCount  = 0;
-// let combinedText :string ="";
-// let expectedIntent: string = "";
 let actualIntent : string = "";
 const model = fs.readJsonSync(path.join(__dirname, "./data/model.json"))
 let testFailed : {
@@ -25,7 +21,7 @@ describe("Alexa Model Testing", async () => {
       writer = new CSVWriter({
         headers: ["status", "input","expected", "actual", "error"]
       });
-      writer.pipe(fs.createWriteStream(path.join(__dirname,'./data/elaxa_reports.csv')))
+      writer.pipe(fs.createWriteStream(path.join(__dirname,'./data/' + config.reportFileName)))
     })
     testIntents.forEach((intent) =>  {
         describe(intent.name, () => {
@@ -42,7 +38,7 @@ describe("Alexa Model Testing", async () => {
                 combinedText = combinedText.replace("{Period}", "May twenty seventeen")
 
                 it(`${combinedText}  ===> ${intent.name}`, async function ()  {
-                    const detected = await detectIntent(combinedText, config.projectId, config.token);
+                    const detected = await detectIntent(combinedText, config.projectId, config.getToken());
                     actualIntent = detected.queryResult.intent.displayName;
                     expect(actualIntent).to.be.eq(intent.name)
                 })
@@ -70,7 +66,6 @@ describe("Alexa Model Testing", async () => {
             })
         })
     })
-
 
     it("Happy testing hacking", () => {
         expect(1).to.be.eq(1)
